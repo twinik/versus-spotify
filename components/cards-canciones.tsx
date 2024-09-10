@@ -30,7 +30,7 @@ export default function CardCanciones({
 		<>
 			<Searcher
 				typeSearch="track"
-				placeholder="canción"
+				placeholder="tema"
 				service={getTrack}
 				setItem1={handleSetTrack1}
 				setItem2={handleSetTrack2}

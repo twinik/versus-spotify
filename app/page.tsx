@@ -45,7 +45,7 @@ export default function Home() {
 
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-green-400 to-blue-500 p-4 md:p-8">
-			<header className="mb-8 text-center mt-10 lg:mt-5">
+			<header className="mb-8 text-center mt-5">
 				<h1 className="text-5xl font-bold text-white mb-2">Versus Spotify</h1>
 				<p className="text-xl text-white">
 					Compara tus artistas, canciones y álbumes favoritos
@@ -67,7 +67,7 @@ export default function Home() {
 							className="rounded-md font-semibold text-gray-100 transition-all data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-lg hover:bg-blue-100 hover:text-blue-700"
 						>
 							<Music className="mr-2 h-4 w-4" />
-							Canciones
+							Temas
 						</TabsTrigger>
 						<TabsTrigger
 							value="albums"
