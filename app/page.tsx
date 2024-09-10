@@ -72,7 +72,7 @@ export default function Home() {
 					</div>
 				</div>
 
-				<Button className="w-full mb-8 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 transition-all duration-300">
+				<Button className="w-full mb-8 bg-gradient-to-r from-green-400 to-blue-500 transition-all duration-300 hover:from-green-500 hover:to-blue-600 hover:shadow-lg hover:scale-95">
 					Comparar
 				</Button>
 

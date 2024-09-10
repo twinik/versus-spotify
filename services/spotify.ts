@@ -32,3 +32,13 @@ export async function getAlbum(albumId: string) {
 	})
 	return response.data
 }
+
+export async function getProfile() {
+	const token = await getAccessToken()
+	const response = await axios.get(`${SPOTIFY_BASE_URL}/me`, {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	})
+	return response.data
+}
