@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { User, Music, BarChart } from "lucide-react"
 import Searcher from "@/components/searcher"
 import { getArtist } from "@/services/spotify"
-import { Artista } from "@/models/artista"
+import { Artist } from "@/models/artist"
 
 export default function CardArtistas({
 	searchTerm1,
@@ -18,8 +18,8 @@ export default function CardArtistas({
 	searchTerm2: string
 	setSearchTerm2: (value: string) => void
 }) {
-	const [artist1, setArtist1] = useState<Artista>()
-	const [artist2, setArtist2] = useState<Artista>()
+	const [artist1, setArtist1] = useState<Artist>()
+	const [artist2, setArtist2] = useState<Artist>()
 
 	useEffect(() => {
 		const fetchData = async () => {

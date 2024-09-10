@@ -1,4 +1,4 @@
-export interface Artista {
+export interface Artist {
     name: string
     genres: string[]
     images: {
