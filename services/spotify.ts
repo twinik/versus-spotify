@@ -33,9 +33,9 @@ export async function getAlbum(albumId: string) {
 	return response.data;
 }
 
-export async function getSearchArtist(
+export async function getSearch(
 	searchTerm: string,
-	type: string = "artist",
+	type: string,
 	limit: number = 1,
 	offset: number = 0
 ) {
@@ -48,50 +48,18 @@ export async function getSearchArtist(
 			},
 		}
 	);
-	if (response.data.artists.items.length > 0) {
-		return response.data.artists.items[0].id;
-	}
-	return null;
-}
-
-export async function getSearchTrack(
-	searchTerm: string,
-	type: string = "track",
-	limit: number = 1,
-	offset: number = 0
-) {
-	const token = await getAccessToken();
-	const response = await axios.get(
-		`${SPOTIFY_BASE_URL}/search?q=${searchTerm}&type=${type}&limit=${limit}&offset=${offset}`,
-		{
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
+	if (type === "artist") { 
+		if (response.data.artists.items.length > 0) {
+			return response.data.artists.items[0].id;
 		}
-	);
-	if (response.data.tracks.items.length > 0) {
-		return response.data.tracks.items[0].id;
-	}
-	return null;
-}
-
-export async function getSearchAlbum(
-	searchTerm: string,
-	type: string = "album",
-	limit: number = 1,
-	offset: number = 0
-) {
-	const token = await getAccessToken();
-	const response = await axios.get(
-		`${SPOTIFY_BASE_URL}/search?q=${searchTerm}&type=${type}&limit=${limit}&offset=${offset}`,
-		{
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
+	} else if (type === "track") {
+		if (response.data.tracks.items.length > 0) {
+			return response.data.tracks.items[0].id;
 		}
-	);
-	if (response.data.albums.items.length > 0) {
-		return response.data.albums.items[0].id;
-	}
+	} else if (type === "album") {
+		if (response.data.albums.items.length > 0) {
+			return response.data.albums.items[0].id;
+		}
+	} 
 	return null;
 }

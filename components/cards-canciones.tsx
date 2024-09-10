@@ -34,7 +34,7 @@ export default function CardCanciones() {
 		<>
 			<Searcher
 				typeSearch="track"
-				placeholder="Buscar canción"
+				placeholder="canción"
 				service={getTrack}
 				setItem1={handleSetTrack1}
 				setItem2={handleSetTrack2}

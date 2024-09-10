@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { getSearchArtist, getSearchTrack, getSearchAlbum } from "@/services/spotify";
+import { toast } from "sonner"
+import { getSearch } from "@/services/spotify";
 
 interface SearcherProps {
 	typeSearch: string;
@@ -27,19 +28,11 @@ export default function Searcher({
 
 	const handleCompare = async () => {
 		if (searchTerm1 === "" || searchTerm2 === "") {
-			alert("No se puede buscar un artista o cancion vacio");
+			toast.error("Ingrese un " + placeholder);
 			return;
 		}
-		if (typeSearch === "artist") {
-			setIdTerm1(await getSearchArtist(searchTerm1));
-			setIdTerm2(await getSearchArtist(searchTerm2));
-		} else if (typeSearch === "track") {
-			setIdTerm1(await getSearchTrack(searchTerm1));
-			setIdTerm2(await getSearchTrack(searchTerm2));
-		} else if (typeSearch === "album") {
-			setIdTerm1(await getSearchAlbum(searchTerm1));
-			setIdTerm2(await getSearchAlbum(searchTerm2));
-		}
+		setIdTerm1(await getSearch(searchTerm1, typeSearch));
+		setIdTerm2(await getSearch(searchTerm2, typeSearch));
 		const item1 = (await service(idTerm1 as string)) as { name: string };
 		const item2 = (await service(idTerm2 as string)) as { name: string };
 		setItem1(item1);
@@ -52,7 +45,7 @@ export default function Searcher({
 				<div>
 					<Input
 						type="text"
-						placeholder={placeholder}
+						placeholder={"Buscar " + placeholder}
 						value={searchTerm1}
 						onChange={(e) => setSearchTerm1(e.target.value)}
 						className="bg-white bg-opacity-50 backdrop-blur-sm text-black"
@@ -61,7 +54,7 @@ export default function Searcher({
 				<div>
 					<Input
 						type="text"
-						placeholder={placeholder + " para comparar"}
+						placeholder={"Buscar " + placeholder + " para comparar"}
 						value={searchTerm2}
 						onChange={(e) => setSearchTerm2(e.target.value)}
 						className="bg-white bg-opacity-50 backdrop-blur-sm text-black"

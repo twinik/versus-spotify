@@ -34,7 +34,7 @@ export default function CardArtistas() {
 		<>
 			<Searcher
 				typeSearch="artist"
-				placeholder="Buscar artista"
+				placeholder="artista"
 				service={getArtist}
 				setItem1={handleSetArtist1}
 				setItem2={handleSetArtist2}
