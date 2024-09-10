@@ -1,27 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
-
-import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Music, BarChart } from "lucide-react";
 import Searcher from "@/components/searcher";
 import { getArtist } from "@/services/spotify";
 import { Artist } from "@/models/artist";
 
-export default function CardArtistas() {
-	const [artist1, setArtist1] = useState<Artist>();
-	const [artist2, setArtist2] = useState<Artist>();
+interface CardArtistasProps {
+	artist1: Artist | undefined;
+	artist2: Artist | undefined;
+	setArtist1: (artist: Artist) => void;
+	setArtist2: (artist: Artist) => void;
+}
 
-	useEffect(() => {
-		const fetchArtists = async () => {
-			const artistData1 = await getArtist("2F9pvj94b52wGKs0OqiNi2");
-			const artistData2 = await getArtist("0SnyKkoyBaB2fG8IJH4xmU");
-			setArtist1(artistData1);
-			setArtist2(artistData2);
-		};
-		fetchArtists();
-	}, []);
-
+export default function CardArtistas({
+	artist1,
+	artist2,
+	setArtist1,
+	setArtist2,
+}: CardArtistasProps) {
 	const handleSetArtist1 = (value: unknown) => {
 		setArtist1(value as Artist);
 	};

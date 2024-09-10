@@ -1,27 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
-
-import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Music, BarChart } from "lucide-react";
 import Searcher from "@/components/searcher";
 import { getAlbum } from "@/services/spotify";
 import { Album } from "@/models/album";
 
-export default function CardArtistas() {
-	const [album1, setAlbum1] = useState<Album>();
-	const [album2, setAlbum2] = useState<Album>();
+interface CardAlbumesProps {
+	album1: Album | undefined;
+	album2: Album | undefined;
+	setAlbum1: (album: Album) => void;
+	setAlbum2: (album: Album) => void;
+}
 
-	useEffect(() => {
-		const fetchAlbums = async () => {
-			const albumData1 = await getAlbum("7FYLw9fTOiYnJFbFk2Mntn");
-			const albumData2 = await getAlbum("0aPjWHFy8wvMwUBhWVq6TV");
-			setAlbum1(albumData1);
-			setAlbum2(albumData2);
-		};
-		fetchAlbums();
-	}, []);
-
+export default function CardAlbumes({
+	album1,
+	album2,
+	setAlbum1,
+	setAlbum2,
+}: CardAlbumesProps) {
 	const handleSetAlbum1 = (value: unknown) => {
 		setAlbum1(value as Album);
 	};

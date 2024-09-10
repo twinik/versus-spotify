@@ -1,27 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
-
-import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Music, BarChart } from "lucide-react";
 import Searcher from "@/components/searcher";
 import { getTrack } from "@/services/spotify";
 import { Track } from "@/models/track";
 
-export default function CardCanciones() {
-	const [track1, setTrack1] = useState<Track>();
-	const [track2, setTrack2] = useState<Track>();
+interface CardCancionesProps {
+	track1: Track | undefined;
+	track2: Track | undefined;
+	setTrack1: (track: Track) => void;
+	setTrack2: (track: Track) => void;
+}
 
-	useEffect(() => {
-		const fetchTracks = async () => {
-			const trackData1 = await getTrack("61qPUnazSdkvua4wgA4L8C");
-			const trackData2 = await getTrack("3Q4U2lpNqKR0URvGkB78L2");
-			setTrack1(trackData1);
-			setTrack2(trackData2);
-		};
-		fetchTracks();
-	}, []);
-
+export default function CardCanciones({
+	track1,
+	track2,
+	setTrack1,
+	setTrack2,
+}: CardCancionesProps) {
 	const handleSetTrack1 = (value: unknown) => {
 		setTrack1(value as Track);
 	};
