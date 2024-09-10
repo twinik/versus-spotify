@@ -61,7 +61,9 @@ export default function CardArtistas({
 							</div>
 							<div className="flex items-center">
 								<BarChart className="mr-2" />
-								<span>Seguidores: {artist1?.followers.total}</span>
+								<span>
+									Seguidores: {artist1?.followers.total.toLocaleString()}
+								</span>
 							</div>
 						</div>
 					</CardContent>
@@ -91,7 +93,9 @@ export default function CardArtistas({
 							</div>
 							<div className="flex items-center">
 								<BarChart className="mr-2" />
-								<span>Seguidores: {artist2?.followers.total}</span>
+								<span>
+									Seguidores: {artist2?.followers.total.toLocaleString()}
+								</span>
 							</div>
 						</div>
 					</CardContent>
