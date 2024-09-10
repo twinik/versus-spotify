@@ -1,18 +1,10 @@
-"use client"
-
-import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Disc, Music, User } from "lucide-react"
-import CardsArtistas from "@/components/cards-artistas"
-import CardsCanciones from "@/components/cards-canciones"
-import CardsAlbumes from "@/components/cards-albumes"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Disc, Music, User } from "lucide-react";
+import CardsArtistas from "@/components/cards-artistas";
+import CardsCanciones from "@/components/cards-canciones";
+import CardsAlbumes from "@/components/cards-albumes";
 
 export default function Home() {
-	const [searchTerm1, setSearchTerm1] = useState("")
-	const [searchTerm2, setSearchTerm2] = useState("")
-	const [idTerm1, setIdTerm1] = useState()
-	const [idTerm2, setIdTerm2] = useState()
-
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-green-400 to-blue-500 p-4 md:p-8">
 			<header className="mb-8 text-center">
@@ -42,31 +34,16 @@ export default function Home() {
 					</TabsList>
 
 					<TabsContent value="artists">
-						<CardsArtistas
-							searchTerm1={searchTerm1}
-							setSearchTerm1={setSearchTerm1}
-							searchTerm2={searchTerm2}
-							setSearchTerm2={setSearchTerm2}
-						/>
+						<CardsArtistas />
 					</TabsContent>
 					<TabsContent value="songs">
-						<CardsCanciones
-							searchTerm1={searchTerm1}
-							setSearchTerm1={setSearchTerm1}
-							searchTerm2={searchTerm2}
-							setSearchTerm2={setSearchTerm2}
-						/>
+						<CardsCanciones />
 					</TabsContent>
 					<TabsContent value="albums">
-						<CardsAlbumes
-							searchTerm1={searchTerm1}
-							setSearchTerm1={setSearchTerm1}
-							searchTerm2={searchTerm2}
-							setSearchTerm2={setSearchTerm2}
-						/>
+						<CardsAlbumes />
 					</TabsContent>
 				</Tabs>
 			</div>
 		</div>
-	)
+	);
 }
