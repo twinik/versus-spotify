@@ -3,17 +3,19 @@ import { User, Music, BarChart } from "lucide-react"
 import Searcher from "@/components/searcher"
 import { getTrack } from "@/services/spotify"
 
+interface CardCancionesProps {
+	searchTerm1: string
+	setSearchTerm1: (value: string) => void
+	searchTerm2: string
+	setSearchTerm2: (value: string) => void
+}
+
 export default function CardCanciones({
 	searchTerm1,
 	setSearchTerm1,
 	searchTerm2,
 	setSearchTerm2,
-}: {
-	searchTerm1: string
-	setSearchTerm1: (value: string) => void
-	searchTerm2: string
-	setSearchTerm2: (value: string) => void
-}) {
+}: CardCancionesProps) {
 	return (
 		<>
 			<Searcher

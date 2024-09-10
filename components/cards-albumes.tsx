@@ -3,17 +3,19 @@ import { User, Music, BarChart } from "lucide-react"
 import Searcher from "@/components/searcher"
 import { getAlbum } from "@/services/spotify"
 
+interface CardAlbumesProps {
+	searchTerm1: string
+	setSearchTerm1: (value: string) => void
+	searchTerm2: string
+	setSearchTerm2: (value: string) => void
+}
+
 export default function CardArtistas({
 	searchTerm1,
 	setSearchTerm1,
 	searchTerm2,
 	setSearchTerm2,
-}: {
-	searchTerm1: string
-	setSearchTerm1: (value: string) => void
-	searchTerm2: string
-	setSearchTerm2: (value: string) => void
-}) {
+}: CardAlbumesProps) {
 	return (
 		<>
 			<Searcher

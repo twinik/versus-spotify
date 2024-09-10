@@ -7,28 +7,30 @@ import Searcher from "@/components/searcher"
 import { getArtist } from "@/services/spotify"
 import { Artist } from "@/models/artist"
 
+interface CardArtistasProps {
+	searchTerm1: string
+	setSearchTerm1: (value: string) => void
+	searchTerm2: string
+	setSearchTerm2: (value: string) => void
+}
+
 export default function CardArtistas({
 	searchTerm1,
 	setSearchTerm1,
 	searchTerm2,
 	setSearchTerm2,
-}: {
-	searchTerm1: string
-	setSearchTerm1: (value: string) => void
-	searchTerm2: string
-	setSearchTerm2: (value: string) => void
-}) {
+}: CardArtistasProps) {
 	const [artist1, setArtist1] = useState<Artist>()
 	const [artist2, setArtist2] = useState<Artist>()
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const artist1 = await getArtist("13JJKrUewC1CJYmIDXQNoH")
-			const artist2 = await getArtist("4kcQWQDK0u9AftVSpdrAgk")
-			setArtist1(artist1)
-			setArtist2(artist2)
+		const fetchArtists = async () => {
+			const artistData1 = await getArtist("13JJKrUewC1CJYmIDXQNoH")
+			const artistData2 = await getArtist("4kcQWQDK0u9AftVSpdrAgk")
+			setArtist1(artistData1)
+			setArtist2(artistData2)
 		}
-		fetchData()
+		fetchArtists()
 	}, [])
 
 	return (

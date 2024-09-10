@@ -1,6 +1,15 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
+interface SearcherProps {
+	searchTerm1: string
+	setSearchTerm1: (value: string) => void
+	searchTerm2: string
+	setSearchTerm2: (value: string) => void
+	placeholder: string
+	service: (searchTerm: string) => Promise<unknown>
+}
+
 export default function Searcher({
 	searchTerm1,
 	setSearchTerm1,
@@ -8,14 +17,7 @@ export default function Searcher({
 	setSearchTerm2,
 	placeholder,
 	service,
-}: {
-	searchTerm1: string
-	setSearchTerm1: (value: string) => void
-	searchTerm2: string
-	setSearchTerm2: (value: string) => void
-	placeholder: string
-	service: (searchTerm: string) => Promise<unknown>
-}) {
+}: SearcherProps) {
 	const handleCompare = async () => {
 		const artist1 = await service("13JJKrUewC1CJYmIDXQNoH") as { name: string }
 		const artist2 = await service("4kcQWQDK0u9AftVSpdrAgk") as { name: string }

@@ -5,6 +5,7 @@ const SPOTIFY_BASE_URL = process.env.NEXT_PUBLIC_SPOTIFY_BASE_URL
 
 export async function getArtist(artistId: string) {
 	const token = await getAccessToken()
+	console.log(token)
 	const response = await axios.get(`${SPOTIFY_BASE_URL}/artists/${artistId}`, {
 		headers: {
 			Authorization: `Bearer ${token}`,
