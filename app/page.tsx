@@ -10,6 +10,8 @@ import CardsAlbumes from "@/components/cards-albumes"
 export default function Home() {
 	const [searchTerm1, setSearchTerm1] = useState("")
 	const [searchTerm2, setSearchTerm2] = useState("")
+	const [idTerm1, setIdTerm1] = useState()
+	const [idTerm2, setIdTerm2] = useState()
 
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-green-400 to-blue-500 p-4 md:p-8">

@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { User, Music, BarChart } from "lucide-react"
-import Searcher from "@/components/searcher"
-import { getArtist } from "@/services/spotify"
-import { Artist } from "@/models/artist"
+import { useEffect, useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { User, Music, BarChart } from "lucide-react";
+import Searcher from "@/components/searcher";
+import { getArtist } from "@/services/spotify";
+import { Artist } from "@/models/artist";
 
 interface CardArtistasProps {
-	searchTerm1: string
-	setSearchTerm1: (value: string) => void
-	searchTerm2: string
-	setSearchTerm2: (value: string) => void
+	searchTerm1: string;
+	setSearchTerm1: (value: string) => void;
+	searchTerm2: string;
+	setSearchTerm2: (value: string) => void;
 }
 
 export default function CardArtistas({
@@ -20,18 +20,18 @@ export default function CardArtistas({
 	searchTerm2,
 	setSearchTerm2,
 }: CardArtistasProps) {
-	const [artist1, setArtist1] = useState<Artist>()
-	const [artist2, setArtist2] = useState<Artist>()
+	const [artist1, setArtist1] = useState<Artist>();
+	const [artist2, setArtist2] = useState<Artist>();
 
 	useEffect(() => {
 		const fetchArtists = async () => {
-			const artistData1 = await getArtist("13JJKrUewC1CJYmIDXQNoH")
-			const artistData2 = await getArtist("4kcQWQDK0u9AftVSpdrAgk")
-			setArtist1(artistData1)
-			setArtist2(artistData2)
-		}
-		fetchArtists()
-	}, [])
+			const artistData1 = await getArtist("13JJKrUewC1CJYmIDXQNoH");
+			const artistData2 = await getArtist("4kcQWQDK0u9AftVSpdrAgk");
+			setArtist1(artistData1);
+			setArtist2(artistData2);
+		};
+		fetchArtists();
+	}, []);
 
 	return (
 		<>
@@ -86,5 +86,5 @@ export default function CardArtistas({
 				</Card>
 			</div>
 		</>
-	)
+	);
 }
