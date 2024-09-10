@@ -23,20 +23,22 @@ export default function Searcher({
 }: SearcherProps) {
 	const [searchTerm1, setSearchTerm1] = useState("");
 	const [searchTerm2, setSearchTerm2] = useState("");
-	const [idTerm1, setIdTerm1] = useState<string | null>(null);
-	const [idTerm2, setIdTerm2] = useState<string | null>(null);
 
 	const handleCompare = async () => {
 		if (searchTerm1 === "" || searchTerm2 === "") {
 			toast.error("Ingrese un " + placeholder);
 			return;
 		}
-		setIdTerm1(await getSearch(searchTerm1, typeSearch));
-		setIdTerm2(await getSearch(searchTerm2, typeSearch));
-		const item1 = (await service(idTerm1 as string)) as { name: string };
-		const item2 = (await service(idTerm2 as string)) as { name: string };
-		setItem1(item1);
-		setItem2(item2);
+		const id1 = await getSearch(searchTerm1, typeSearch);
+		const id2 = await getSearch(searchTerm2, typeSearch);
+		if (id1 && id2) {
+			const item1 = (await service(id1 as string)) as { name: string };
+			const item2 = (await service(id2 as string)) as { name: string };
+			setItem1(item1);
+			setItem2(item2);
+		} else {
+			toast.error("No se encontraron resultados para la búsqueda.");
+		}
 	};
 
 	return (
