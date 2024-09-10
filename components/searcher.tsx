@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner"
+import { toast } from "sonner";
 import { getSearch } from "@/services/spotify";
 
 interface SearcherProps {
@@ -64,7 +64,7 @@ export default function Searcher({
 
 			<Button
 				onClick={handleCompare}
-				className="w-full mb-8 bg-gradient-to-r from-green-400 to-blue-500 transition-all duration-300 hover:from-green-500 hover:to-blue-600 hover:shadow-lg hover:scale-95"
+				className="w-full font-bold mb-8 bg-gradient-to-r from-green-400 to-blue-500 transition-all duration-300 hover:from-green-500 hover:to-blue-600 hover:shadow-lg hover:scale-95"
 			>
 				Comparar
 			</Button>

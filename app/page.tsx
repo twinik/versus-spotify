@@ -21,7 +21,7 @@ export default function Home() {
 
 	useEffect(() => {
 		const fetchArtists = async () => {
-			const artistData1 = await getArtist("2F9pvj94b52wGKs0OqiNi2");
+			const artistData1 = await getArtist("2DaxqgrOhkeH0fpeiQq2f4");
 			const artistData2 = await getArtist("0SnyKkoyBaB2fG8IJH4xmU");
 			setArtist1(artistData1);
 			setArtist2(artistData2);
@@ -46,26 +46,33 @@ export default function Home() {
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-green-400 to-blue-500 p-4 md:p-8">
 			<header className="mb-8 text-center mt-10 lg:mt-5">
-				<h1 className="text-5xl font-bold text-white mb-2 animate-pulse">
-					Versus Spotify
-				</h1>
+				<h1 className="text-5xl font-bold text-white mb-2">Versus Spotify</h1>
 				<p className="text-xl text-white">
-					Compara tus artistas y canciones favoritas
+					Compara tus artistas, canciones y álbumes favoritos
 				</p>
 			</header>
 
 			<div className="max-w-4xl mx-auto bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-2xl p-6">
 				<Tabs defaultValue="artists" className="mb-6">
-					<TabsList className="grid w-full grid-cols-3 p-1 bg-gray-100 rounded-lg">
-						<TabsTrigger value="artists" className="rounded-md transition-all">
+					<TabsList className="grid w-full grid-cols-3 gap-2 p-1 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg">
+						<TabsTrigger
+							value="artists"
+							className="rounded-md font-semibold text-gray-100 transition-all data-[state=active]:bg-white data-[state=active]:text-green-600 data-[state=active]:shadow-lg hover:bg-green-100 hover:text-green-700"
+						>
 							<User className="mr-2 h-4 w-4" />
 							Artistas
 						</TabsTrigger>
-						<TabsTrigger value="songs" className="rounded-md transition-all">
+						<TabsTrigger
+							value="songs"
+							className="rounded-md font-semibold text-gray-100 transition-all data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-lg hover:bg-blue-100 hover:text-blue-700"
+						>
 							<Music className="mr-2 h-4 w-4" />
 							Canciones
 						</TabsTrigger>
-						<TabsTrigger value="albums" className="rounded-md transition-all">
+						<TabsTrigger
+							value="albums"
+							className="rounded-md font-semibold text-gray-100 transition-all data-[state=active]:bg-white data-[state=active]:text-teal-600 data-[state=active]:shadow-lg hover:bg-teal-100 hover:text-teal-700"
+						>
 							<Disc className="mr-2 h-4 w-4" />
 							Álbumes
 						</TabsTrigger>
