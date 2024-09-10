@@ -1,7 +1,7 @@
 import axios from "axios"
 import { getAccessToken } from "@/services/auth"
 
-const SPOTIFY_BASE_URL = process.env.SPOTIFY_BASE_URL
+const SPOTIFY_BASE_URL = process.env.NEXT_PUBLIC_SPOTIFY_BASE_URL
 
 export async function getArtist(artistId: string) {
 	const token = await getAccessToken()

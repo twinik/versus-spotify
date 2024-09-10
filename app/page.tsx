@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { BarChart, Disc, Music, User } from "lucide-react"
+import { Disc, Music, User } from "lucide-react"
+import CardsArtistas from "@/components/cards-artistas"
+import CardsCanciones from "@/components/cards-canciones"
+import CardsAlbumes from "@/components/cards-albumes"
 
 export default function Home() {
 	const [searchTerm1, setSearchTerm1] = useState("")
@@ -38,86 +38,32 @@ export default function Home() {
 							Álbumes
 						</TabsTrigger>
 					</TabsList>
+
 					<TabsContent value="artists">
-						<h2 className="text-2xl text-black font-semibold mb-4">
-							Compara Artistas
-						</h2>
+						<CardsArtistas
+							searchTerm1={searchTerm1}
+							setSearchTerm1={setSearchTerm1}
+							searchTerm2={searchTerm2}
+							setSearchTerm2={setSearchTerm2}
+						/>
 					</TabsContent>
 					<TabsContent value="songs">
-						<h2 className="text-2xl font-semibold mb-4">Compara Canciones</h2>
+						<CardsCanciones
+							searchTerm1={searchTerm1}
+							setSearchTerm1={setSearchTerm1}
+							searchTerm2={searchTerm2}
+							setSearchTerm2={setSearchTerm2}
+						/>
 					</TabsContent>
 					<TabsContent value="albums">
-						<h2 className="text-2xl font-semibold mb-4">Compara Álbumes</h2>
+						<CardsAlbumes
+							searchTerm1={searchTerm1}
+							setSearchTerm1={setSearchTerm1}
+							searchTerm2={searchTerm2}
+							setSearchTerm2={setSearchTerm2}
+						/>
 					</TabsContent>
 				</Tabs>
-
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-					<div>
-						<Input
-							type="text"
-							placeholder="Buscar artista, canción o álbum"
-							value={searchTerm1}
-							onChange={(e) => setSearchTerm1(e.target.value)}
-							className="bg-white bg-opacity-50 backdrop-blur-sm"
-						/>
-					</div>
-					<div>
-						<Input
-							type="text"
-							placeholder="Buscar artista, canción o álbum para comparar"
-							value={searchTerm2}
-							onChange={(e) => setSearchTerm2(e.target.value)}
-							className="bg-white bg-opacity-50 backdrop-blur-sm"
-						/>
-					</div>
-				</div>
-
-				<Button className="w-full mb-8 bg-gradient-to-r from-green-400 to-blue-500 transition-all duration-300 hover:from-green-500 hover:to-blue-600 hover:shadow-lg hover:scale-95">
-					Comparar
-				</Button>
-
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-					<Card className="bg-white bg-opacity-50 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
-						<CardHeader>
-							<CardTitle>Artista 1</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<div className="flex items-center justify-center h-48 bg-gray-100 rounded-md overflow-hidden">
-								<User className="h-24 w-24 text-gray-400" />
-							</div>
-							<div className="mt-4 space-y-2">
-								<div className="flex items-center">
-									<Music className="mr-2" />
-									<span>Popularidad: 85</span>
-								</div>
-								<div className="flex items-center">
-									<BarChart className="mr-2" />
-									<span>Seguidores: 1M</span>
-								</div>
-							</div>
-						</CardContent>
-					</Card>
-					<Card className="bg-white bg-opacity-50 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
-						<CardHeader>
-							<CardTitle>Artista 2</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<div className="flex items-center justify-center h-48 bg-gray-100 rounded-md overflow-hidden">
-								<User className="h-24 w-24 text-gray-400" />
-							</div>
-							<div className="mt-4 space-y-2">
-								<div className="flex items-center">
-									<Music className="mr-2" />
-									<span>Popularidad: 92</span>
-								</div>
-								<div className="flex items-center">
-									<BarChart className="mr-2" />
-									<span>Seguidores: 2.5M</span>
-								</div>
-							</div>
-						</CardContent>
-					</Card>
-				</div>
 			</div>
 		</div>
 	)
