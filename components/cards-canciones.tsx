@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Music, BarChart } from "lucide-react";
 import Searcher from "@/components/searcher";
 import { getTrack } from "@/services/spotify";
-import { Track } from "@/models/track";
+import { Track } from "@/models/Spotify";
 
 interface CardCancionesProps {
 	track1: Track | undefined;

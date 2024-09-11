@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Music, BarChart } from "lucide-react";
 import Searcher from "@/components/searcher";
 import { getAlbum } from "@/services/spotify";
-import { Album } from "@/models/album";
+import { Album } from "@/models/Spotify";
 
 interface CardAlbumesProps {
 	album1: Album | undefined;

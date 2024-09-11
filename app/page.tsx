@@ -6,10 +6,8 @@ import { Disc, Music, User } from "lucide-react";
 import CardsArtistas from "@/components/cards-artistas";
 import CardsCanciones from "@/components/cards-canciones";
 import CardsAlbumes from "@/components/cards-albumes";
-import { getArtist, getAlbum, getTrack } from "@/services/spotify";
-import { Artist } from "@/models/artist";
-import { Album } from "@/models/album";
-import { Track } from "@/models/track";
+import { getArtistDetails, getAlbum, getTrack } from "@/services/spotify";
+import { Artist, Album, Track } from "@/models/Spotify";
 
 export default function Home() {
 	const [artist1, setArtist1] = useState<Artist>();
@@ -18,29 +16,45 @@ export default function Home() {
 	const [track2, setTrack2] = useState<Track>();
 	const [album1, setAlbum1] = useState<Album>();
 	const [album2, setAlbum2] = useState<Album>();
+	const [loadingArtists, setLoadingArtists] = useState(false);
+	const [loadingTracks, setLoadingTracks] = useState(false);
+	const [loadingAlbums, setLoadingAlbums] = useState(false);
 
 	useEffect(() => {
 		const fetchArtists = async () => {
-			const artistData1 = await getArtist("2DaxqgrOhkeH0fpeiQq2f4");
-			const artistData2 = await getArtist("0SnyKkoyBaB2fG8IJH4xmU");
-			setArtist1(artistData1);
-			setArtist2(artistData2);
-		};
-		const fetchAlbums = async () => {
-			const albumData1 = await getAlbum("7FYLw9fTOiYnJFbFk2Mntn");
-			const albumData2 = await getAlbum("0aPjWHFy8wvMwUBhWVq6TV");
-			setAlbum1(albumData1);
-			setAlbum2(albumData2);
+			setLoadingArtists(true);
+			try {
+				const [artistData1, artistData2] = await Promise.all([
+					getArtistDetails("2DaxqgrOhkeH0fpeiQq2f4"),
+					getArtistDetails("0SnyKkoyBaB2fG8IJH4xmU"),
+				]);
+				setArtist1(artistData1);
+				setArtist2(artistData2);
+			} catch (error) {
+				console.error("Error fetching artists:", error);
+			} finally {
+				setLoadingArtists(false);
+			}
 		};
 		const fetchTracks = async () => {
+			setLoadingTracks(true);
 			const trackData1 = await getTrack("61qPUnazSdkvua4wgA4L8C");
 			const trackData2 = await getTrack("3Q4U2lpNqKR0URvGkB78L2");
 			setTrack1(trackData1);
 			setTrack2(trackData2);
+			setLoadingTracks(false);
+		};
+		const fetchAlbums = async () => {
+			setLoadingAlbums(true);
+			const albumData1 = await getAlbum("7FYLw9fTOiYnJFbFk2Mntn");
+			const albumData2 = await getAlbum("0aPjWHFy8wvMwUBhWVq6TV");
+			setAlbum1(albumData1);
+			setAlbum2(albumData2);
+			setLoadingAlbums(false);
 		};
 		fetchArtists();
-		fetchAlbums();
 		fetchTracks();
+		fetchAlbums();
 	}, []);
 
 	return (
@@ -84,6 +98,7 @@ export default function Home() {
 							artist2={artist2}
 							setArtist1={setArtist1}
 							setArtist2={setArtist2}
+							loadingArtists={loadingArtists}
 						/>
 					</TabsContent>
 					<TabsContent value="songs">
