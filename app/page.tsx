@@ -17,8 +17,8 @@ export default function Home() {
 	const [album1, setAlbum1] = useState<Album>();
 	const [album2, setAlbum2] = useState<Album>();
 	const [loadingArtists, setLoadingArtists] = useState(false);
-	//const [loadingTracks, setLoadingTracks] = useState(false);
-	//const [loadingAlbums, setLoadingAlbums] = useState(false);
+	const [loadingTracks, setLoadingTracks] = useState(false);
+	const [loadingAlbums, setLoadingAlbums] = useState(false);
 
 	useEffect(() => {
 		const fetchArtists = async () => {
@@ -37,20 +37,34 @@ export default function Home() {
 			}
 		};
 		const fetchTracks = async () => {
-			//setLoadingTracks(true);
-			const trackData1 = await getTrack("61qPUnazSdkvua4wgA4L8C");
-			const trackData2 = await getTrack("3Q4U2lpNqKR0URvGkB78L2");
-			setTrack1(trackData1);
-			setTrack2(trackData2);
-			//setLoadingTracks(false);
+			setLoadingTracks(true);
+			try {
+				const [trackData1, trackData2] = await Promise.all([
+					getTrack("61qPUnazSdkvua4wgA4L8C"),
+					getTrack("3Q4U2lpNqKR0URvGkB78L2"),
+				]);
+				setTrack1(trackData1);
+				setTrack2(trackData2);
+			} catch (error) {
+				console.error("Error fetching tracks:", error);
+			} finally {
+				setLoadingTracks(false);
+			}
 		};
 		const fetchAlbums = async () => {
-			//setLoadingAlbums(true);
-			const albumData1 = await getAlbum("7FYLw9fTOiYnJFbFk2Mntn");
-			const albumData2 = await getAlbum("0aPjWHFy8wvMwUBhWVq6TV");
-			setAlbum1(albumData1);
-			setAlbum2(albumData2);
-			//setLoadingAlbums(false);
+			setLoadingAlbums(true);
+			try {
+				const [albumData1, albumData2] = await Promise.all([
+					getAlbum("7FYLw9fTOiYnJFbFk2Mntn"),
+					getAlbum("0aPjWHFy8wvMwUBhWVq6TV"),
+				]);
+				setAlbum1(albumData1);
+				setAlbum2(albumData2);
+			} catch (error) {
+				console.error("Error fetching albums:", error);
+			} finally {
+				setLoadingAlbums(false);
+			}
 		};
 		fetchArtists();
 		fetchTracks();
@@ -107,6 +121,7 @@ export default function Home() {
 							track2={track2}
 							setTrack1={setTrack1}
 							setTrack2={setTrack2}
+							loadingTracks={loadingTracks}
 						/>
 					</TabsContent>
 					<TabsContent value="albums">

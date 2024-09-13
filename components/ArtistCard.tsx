@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { User, Music, BarChart, Disc, Mic, ExternalLink } from "lucide-react";
+import { User, Music, BarChart, Disc, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Artist } from "@/models/Spotify";
 import { ArtistCardSkeleton } from "@/components/skeletons/ArtistCardSkeleton";
@@ -67,12 +67,7 @@ export function ArtistCard({ artist, loading }: ArtistCardProps) {
 								{artist.followers.total.toLocaleString()} seguidores
 							</span>
 						</div>
-						<div className="flex items-center">
-							<Mic className="mr-2 h-4 w-4 text-green-500" />
-							<span className="text-sm">
-								{/* {artist.totalTracksCount} */} 10 canciones
-							</span>
-						</div>
+
 						<div className="flex items-center">
 							<Disc className="mr-2 h-4 w-4 text-purple-500" />
 							<span className="text-sm">{artist.totalAlbums} álbumes</span>

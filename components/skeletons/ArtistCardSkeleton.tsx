@@ -5,12 +5,11 @@ export function ArtistCardSkeleton() {
     <Card className="bg-white bg-opacity-70 backdrop-blur-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
       <div className="relative">
         <div className="w-full h-64 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 animate-shimmer"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
       </div>
 
       <CardHeader className="relative z-10 -mt-20 pb-0">
         <div className="h-8 w-3/4 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded mb-2 animate-shimmer"></div>
-        <div className="flex flex-wrap gap-2 mt-2">
+        <div className="flex gap-2 mt-2">
           {[1, 2, 3].map((i) => (
             <div key={i} className="h-6 w-20 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded animate-shimmer"></div>
           ))}
