@@ -130,6 +130,7 @@ export default function Home() {
 							album2={album2}
 							setAlbum1={setAlbum1}
 							setAlbum2={setAlbum2}
+							loadingAlbums={loadingAlbums}
 						/>
 					</TabsContent>
 				</Tabs>

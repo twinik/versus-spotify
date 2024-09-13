@@ -2,27 +2,19 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import {
-	Music,
-	Clock,
-	Disc,
-	Mic,
-	Play,
-	ExternalLink,
-	AlertTriangle,
-} from "lucide-react";
+import { Music, Calendar, Disc, ExternalLink, Clock, Tag } from "lucide-react";
 import Link from "next/link";
-import { Track } from "@/models/Spotify";
-import { TrackCardSkeleton } from "@/components/skeletons/TrackCardSkeleton";
+import { Album } from "@/models/Spotify";
+import { AlbumCardSkeleton } from "@/components/skeletons/AlbumCardSkeleton";
 
-interface TrackCardProps {
-	track: Track | undefined;
+interface AlbumCardProps {
+	album: Album | undefined;
 	loading: boolean;
 }
 
-export function TrackCard({ track, loading }: TrackCardProps) {
-	if (loading) return <TrackCardSkeleton />;
-	if (!track) return null;
+export function AlbumCard({ album, loading }: AlbumCardProps) {
+	if (loading) return <AlbumCardSkeleton />;
+	if (!album) return null;
 
 	const formatDuration = (ms: number) => {
 		const minutes = Math.floor(ms / 60000);
@@ -30,13 +22,23 @@ export function TrackCard({ track, loading }: TrackCardProps) {
 		return `${minutes}:${Number(seconds) < 10 ? "0" : ""}${seconds}`;
 	};
 
+	const formatDate = (date: string) => {
+		const [year, month, day] = date.split("-");
+		return `${day}/${month}/${year}`;
+	};
+
+	const totalDuration = album.tracks.items.reduce(
+		(acc, track) => acc + track.duration_ms,
+		0
+	);
+
 	return (
 		<Card className="bg-white bg-opacity-80 backdrop-blur-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
 			<div className="relative">
-				{track.album.images[0]?.url ? (
+				{album.images[0]?.url ? (
 					<img
-						src={track.album.images[0].url}
-						alt={track.album.name}
+						src={album.images[0].url}
+						alt={album.name}
 						className="w-full h-64 object-cover"
 					/>
 				) : (
@@ -49,10 +51,11 @@ export function TrackCard({ track, loading }: TrackCardProps) {
 
 			<CardHeader className="relative z-10 -mt-20 pb-0">
 				<CardTitle className="text-2xl sm:text-3xl font-bold text-white break-words hyphens-auto">
-					{track.name}
+					{album.name}
 				</CardTitle>
+
 				<div className="flex flex-wrap gap-2 -mb-6">
-					{track.artists.map((artist) => (
+					{album.artists.map((artist) => (
 						<Badge
 							key={artist.id}
 							variant="secondary"
@@ -61,12 +64,9 @@ export function TrackCard({ track, loading }: TrackCardProps) {
 							{artist.name}
 						</Badge>
 					))}
-					{track.explicit && (
-						<Badge variant="destructive" className="bg-red-500 text-white">
-							<AlertTriangle className="w-3 h-3 mr-1" />
-							Explícito
-						</Badge>
-					)}
+					<Badge variant="secondary" className="bg-purple-500 text-white">
+						{album.album_type}
+					</Badge>
 				</div>
 			</CardHeader>
 
@@ -75,47 +75,48 @@ export function TrackCard({ track, loading }: TrackCardProps) {
 					<div>
 						<div className="flex items-center justify-between mb-1">
 							<span className="text-sm font-medium">Popularidad</span>
-							<span className="text-sm font-medium">{track.popularity}%</span>
+							<span className="text-sm font-medium">{album.popularity}%</span>
 						</div>
-						<Progress value={track.popularity} className="h-2" />
+						<Progress value={album.popularity} className="h-2" />
 					</div>
 
 					<div className="grid grid-cols-2 gap-4">
 						<div className="flex items-center">
+							<Calendar className="mr-2 h-4 w-4 text-green-500 flex-shrink-0" />
+							<span className="text-sm">{formatDate(album.release_date)}</span>
+						</div>
+						<div className="flex items-center">
 							<Disc className="mr-2 h-4 w-4 text-purple-500 flex-shrink-0" />
-							<span className="text-sm truncate">{track.album.name}</span>
+							<span className="text-sm">{album.total_tracks} pistas</span>
 						</div>
 						<div className="flex items-center">
-							<Clock className="mr-2 h-4 w-4 text-green-500 flex-shrink-0" />
-							<span className="text-sm">
-								{formatDuration(track.duration_ms)}
-							</span>
+							<Clock className="mr-2 h-4 w-4 text-blue-500 flex-shrink-0" />
+							<span className="text-sm">{formatDuration(totalDuration)}</span>
 						</div>
 						<div className="flex items-center">
-							<Mic className="mr-2 h-4 w-4 text-blue-500 flex-shrink-0" />
-							<span className="text-sm truncate">{track.artists[0].name}</span>
+							<Tag className="mr-2 h-4 w-4 text-yellow-500 flex-shrink-0" />
+							<span className="text-sm truncate">{album.label}</span>
 						</div>
 					</div>
 
-					{track.preview_url && (
-						<div>
-							<h4 className="font-semibold mb-2 flex items-center">
-								<Play className="mr-2 h-4 w-4 text-red-500" />
-								Vista previa
-							</h4>
-							<iframe
-								title="Track Preview"
-								src={`https://open.spotify.com/embed/track/${track.id}?utm_source=generator&theme=0`}
-								width="100%"
-								height="80"
-								allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-							/>
-						</div>
-					)}
+					<div>
+						<h4 className="font-semibold mb-2 flex items-center">
+							<Music className="mr-2 h-4 w-4 text-red-500" />
+							Pistas
+						</h4>
+						<ul className="space-y-1">
+							{album.tracks.items.slice(0, 3).map((track, index) => (
+								<li key={track.id} className="text-sm">
+									{index + 1}. {track.name} -{" "}
+									{formatDuration(track.duration_ms)}
+								</li>
+							))}
+						</ul>
+					</div>
 
-					{track.external_urls.spotify && (
+					{album.external_urls.spotify && (
 						<Link
-							href={track.external_urls.spotify}
+							href={album.external_urls.spotify}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors duration-200"
