@@ -77,7 +77,7 @@ export default function Home() {
 			<div className="absolute top-4 right-4 z-50">
 				<ModeToggle />
 			</div>
-			<header className="mb-8 text-center mt-5">
+			<header className="mb-8 text-center mt-10 lg:mt-5">
 				<h1 className="text-5xl font-bold text-white mb-2">Versus Spotify</h1>
 				<p className="text-xl text-white">
 					Compara tus artistas, canciones y álbumes favoritos
