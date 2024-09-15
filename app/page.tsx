@@ -26,8 +26,8 @@ export default function Home() {
 			setLoadingArtists(true);
 			try {
 				const [artistData1, artistData2] = await Promise.all([
-					getArtistDetails("2DaxqgrOhkeH0fpeiQq2f4"),
-					getArtistDetails("0SnyKkoyBaB2fG8IJH4xmU"),
+					getArtistDetails("3qm84nBOXUEQ2vnTfUTTFC"),
+					getArtistDetails("58lV9VcRSjABbAbfWS6skp"),
 				]);
 				setArtist1(artistData1);
 				setArtist2(artistData2);
@@ -41,7 +41,7 @@ export default function Home() {
 			setLoadingTracks(true);
 			try {
 				const [trackData1, trackData2] = await Promise.all([
-					getTrack("61qPUnazSdkvua4wgA4L8C"),
+					getTrack("67Q93kXygxCskeQiIP0V0j"),
 					getTrack("3Q4U2lpNqKR0URvGkB78L2"),
 				]);
 				setTrack1(trackData1);
