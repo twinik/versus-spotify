@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { Music, Calendar, Disc, ExternalLink, Clock, Tag } from "lucide-react";
 import Link from "next/link";
 import { Album } from "@/models/Spotify";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 import { AlbumCardSkeleton } from "@/components/skeletons/AlbumCardSkeleton";
 
 interface AlbumCardProps {
@@ -97,7 +97,7 @@ export function AlbumCard({ album, loading }: AlbumCardProps) {
 						<div className="flex items-center">
 							<Disc className="mr-2 h-4 w-4 text-purple-500 dark:text-purple-400 flex-shrink-0" />
 							<span className="text-sm dark:text-gray-200">
-								{album.total_tracks} pistas
+								{album.total_tracks} pista/s
 							</span>
 						</div>
 						<div className="flex items-center">

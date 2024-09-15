@@ -2,10 +2,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { ArtistCardSkeleton } from "@/components/skeletons/ArtistCardSkeleton";
 import { User, Music, BarChart, Disc, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Artist } from "@/models/Spotify";
-import { ArtistCardSkeleton } from "@/components/skeletons/ArtistCardSkeleton";
 
 interface ArtistCardProps {
 	artist: Artist | undefined;
