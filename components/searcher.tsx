@@ -12,6 +12,7 @@ interface SearcherProps {
 	service: (searchTerm: string) => Promise<unknown>;
 	setItem1: React.Dispatch<React.SetStateAction<unknown>>;
 	setItem2: React.Dispatch<React.SetStateAction<unknown>>;
+	setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function Searcher({
@@ -20,6 +21,7 @@ export default function Searcher({
 	service,
 	setItem1,
 	setItem2,
+	setLoading,
 }: SearcherProps) {
 	const [searchTerm1, setSearchTerm1] = useState("");
 	const [searchTerm2, setSearchTerm2] = useState("");
@@ -29,6 +31,7 @@ export default function Searcher({
 			toast.error("Ingrese un " + placeholder);
 			return;
 		}
+		setLoading(true);
 		const id1 = await getSearch(searchTerm1, typeSearch);
 		const id2 = await getSearch(searchTerm2, typeSearch);
 		if (id1 && id2) {
@@ -39,6 +42,7 @@ export default function Searcher({
 		} else {
 			toast.error("No se encontraron resultados para la búsqueda.");
 		}
+		setLoading(false);
 	};
 
 	return (

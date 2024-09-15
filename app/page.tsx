@@ -113,6 +113,7 @@ export default function Home() {
 							setArtist1={setArtist1}
 							setArtist2={setArtist2}
 							loadingArtists={loadingArtists}
+							setLoadingArtists={setLoadingArtists}
 						/>
 					</TabsContent>
 					<TabsContent value="songs">
@@ -122,6 +123,7 @@ export default function Home() {
 							setTrack1={setTrack1}
 							setTrack2={setTrack2}
 							loadingTracks={loadingTracks}
+							setLoadingTracks={setLoadingTracks}
 						/>
 					</TabsContent>
 					<TabsContent value="albums">
@@ -131,6 +133,7 @@ export default function Home() {
 							setAlbum1={setAlbum1}
 							setAlbum2={setAlbum2}
 							loadingAlbums={loadingAlbums}
+							setLoadingAlbums={setLoadingAlbums}
 						/>
 					</TabsContent>
 				</Tabs>

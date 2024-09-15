@@ -9,6 +9,7 @@ interface CardCancionesProps {
 	setTrack1: (track: Track) => void;
 	setTrack2: (track: Track) => void;
 	loadingTracks: boolean;
+	setLoadingTracks: (loading: boolean) => void;
 }
 
 export default function CardCanciones({
@@ -17,6 +18,7 @@ export default function CardCanciones({
 	setTrack1,
 	setTrack2,
 	loadingTracks,
+	setLoadingTracks,
 }: CardCancionesProps) {
 	const handleSetTrack1 = (value: unknown) => {
 		setTrack1(value as Track);
@@ -24,6 +26,14 @@ export default function CardCanciones({
 
 	const handleSetTrack2 = (value: unknown) => {
 		setTrack2(value as Track);
+	};
+
+	const handleSetLoading = (
+		loading: boolean | ((prev: boolean) => boolean)
+	) => {
+		setLoadingTracks(
+			typeof loading === "function" ? loading(loadingTracks) : loading
+		);
 	};
 
 	return (
@@ -34,6 +44,7 @@ export default function CardCanciones({
 				service={getTrack}
 				setItem1={handleSetTrack1}
 				setItem2={handleSetTrack2}
+				setLoading={handleSetLoading}
 			/>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 				<TrackCard track={track1} loading={loadingTracks} />

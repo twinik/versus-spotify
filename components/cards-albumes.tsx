@@ -9,6 +9,7 @@ interface CardAlbumesProps {
 	setAlbum1: (album: Album) => void;
 	setAlbum2: (album: Album) => void;
 	loadingAlbums: boolean;
+	setLoadingAlbums: (loading: boolean) => void;
 }
 
 export default function CardAlbumes({
@@ -17,6 +18,7 @@ export default function CardAlbumes({
 	setAlbum1,
 	setAlbum2,
 	loadingAlbums,
+	setLoadingAlbums,
 }: CardAlbumesProps) {
 	const handleSetAlbum1 = (value: unknown) => {
 		setAlbum1(value as Album);
@@ -24,6 +26,14 @@ export default function CardAlbumes({
 
 	const handleSetAlbum2 = (value: unknown) => {
 		setAlbum2(value as Album);
+	};
+
+	const handleSetLoading = (
+		loading: boolean | ((prev: boolean) => boolean)
+	) => {
+		setLoadingAlbums(
+			typeof loading === "function" ? loading(loadingAlbums) : loading
+		);
 	};
 
 	return (
@@ -34,6 +44,7 @@ export default function CardAlbumes({
 				service={getAlbum}
 				setItem1={handleSetAlbum1}
 				setItem2={handleSetAlbum2}
+				setLoading={handleSetLoading}
 			/>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 				<AlbumCard album={album1} loading={loadingAlbums} />

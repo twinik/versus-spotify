@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export function TrackCardSkeleton() {
 	return (
-		<Card className="bg-white dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-80 backdrop-blur-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
+		<Card className="bg-white bg-opacity-80 backdrop-blur-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
 			<div className="relative">
 				<div className="w-full h-64 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 animate-shimmer"></div>
 				<div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
