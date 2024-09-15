@@ -31,7 +31,7 @@ export function TrackCard({ track, loading }: TrackCardProps) {
 	};
 
 	return (
-		<Card className="bg-white bg-opacity-80 backdrop-blur-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
+		<Card className="bg-white dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
 			<div className="relative">
 				{track.album.images[0]?.url ? (
 					<img
@@ -56,13 +56,16 @@ export function TrackCard({ track, loading }: TrackCardProps) {
 						<Badge
 							key={artist.id}
 							variant="secondary"
-							className="bg-blue-500 text-white"
+							className="bg-blue-500 dark:bg-blue-600 text-white"
 						>
 							{artist.name}
 						</Badge>
 					))}
 					{track.explicit && (
-						<Badge variant="destructive" className="bg-red-500 text-white">
+						<Badge
+							variant="destructive"
+							className="bg-red-500 dark:bg-red-600 text-white"
+						>
 							<AlertTriangle className="w-3 h-3 mr-1" />
 							Explícito
 						</Badge>
@@ -74,33 +77,41 @@ export function TrackCard({ track, loading }: TrackCardProps) {
 				<div className="space-y-4">
 					<div>
 						<div className="flex items-center justify-between mb-1">
-							<span className="text-sm font-medium">Popularidad</span>
-							<span className="text-sm font-medium">{track.popularity}%</span>
+							<span className="text-sm font-medium dark:text-gray-200">
+								Popularidad
+							</span>
+							<span className="text-sm font-medium dark:text-gray-200">
+								{track.popularity}%
+							</span>
 						</div>
 						<Progress value={track.popularity} className="h-2" />
 					</div>
 
 					<div className="grid grid-cols-2 gap-4">
 						<div className="flex items-center">
-							<Disc className="mr-2 h-4 w-4 text-purple-500 flex-shrink-0" />
-							<span className="text-sm truncate">{track.album.name}</span>
+							<Disc className="mr-2 h-4 w-4 text-purple-500 dark:text-purple-400 flex-shrink-0" />
+							<span className="text-sm truncate dark:text-gray-200">
+								{track.album.name}
+							</span>
 						</div>
 						<div className="flex items-center">
-							<Clock className="mr-2 h-4 w-4 text-green-500 flex-shrink-0" />
-							<span className="text-sm">
+							<Clock className="mr-2 h-4 w-4 text-green-500 dark:text-green-400 flex-shrink-0" />
+							<span className="text-sm dark:text-gray-200">
 								{formatDuration(track.duration_ms)}
 							</span>
 						</div>
 						<div className="flex items-center">
-							<Mic className="mr-2 h-4 w-4 text-blue-500 flex-shrink-0" />
-							<span className="text-sm truncate">{track.artists[0].name}</span>
+							<Mic className="mr-2 h-4 w-4 text-blue-500 dark:text-blue-400 flex-shrink-0" />
+							<span className="text-sm truncate dark:text-gray-200">
+								{track.artists[0].name}
+							</span>
 						</div>
 					</div>
 
 					{track.preview_url && (
 						<div>
-							<h4 className="font-semibold mb-2 flex items-center">
-								<Play className="mr-2 h-4 w-4 text-red-500" />
+							<h4 className="font-semibold mb-2 flex items-center dark:text-gray-200">
+								<Play className="mr-2 h-4 w-4 text-red-500 dark:text-red-400" />
 								Vista previa
 							</h4>
 							<iframe
@@ -109,6 +120,7 @@ export function TrackCard({ track, loading }: TrackCardProps) {
 								width="100%"
 								height="80"
 								allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+								className="rounded-2xl"
 							/>
 						</div>
 					)}
@@ -118,7 +130,7 @@ export function TrackCard({ track, loading }: TrackCardProps) {
 							href={track.external_urls.spotify}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors duration-200"
+							className="inline-flex items-center px-4 py-2 bg-green-500 dark:bg-green-600 text-white rounded-full hover:bg-green-600 dark:hover:bg-green-700 transition-colors duration-200"
 						>
 							<ExternalLink className="mr-2 h-4 w-4" />
 							Ver en Spotify

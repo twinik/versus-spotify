@@ -33,7 +33,7 @@ export function AlbumCard({ album, loading }: AlbumCardProps) {
 	);
 
 	return (
-		<Card className="bg-white bg-opacity-80 backdrop-blur-md hover:shadow-2xl transition-all duration-300 overflow-hidden">
+		<Card className="bg-white dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
 			<div className="relative">
 				{album.images[0]?.url ? (
 					<img
@@ -59,12 +59,15 @@ export function AlbumCard({ album, loading }: AlbumCardProps) {
 						<Badge
 							key={artist.id}
 							variant="secondary"
-							className="bg-blue-500 text-white"
+							className="bg-blue-500 dark:bg-blue-600 text-white"
 						>
 							{artist.name}
 						</Badge>
 					))}
-					<Badge variant="secondary" className="bg-purple-500 text-white">
+					<Badge
+						variant="secondary"
+						className="bg-purple-500 dark:bg-purple-600 text-white"
+					>
 						{album.album_type}
 					</Badge>
 				</div>
@@ -74,39 +77,51 @@ export function AlbumCard({ album, loading }: AlbumCardProps) {
 				<div className="space-y-4">
 					<div>
 						<div className="flex items-center justify-between mb-1">
-							<span className="text-sm font-medium">Popularidad</span>
-							<span className="text-sm font-medium">{album.popularity}%</span>
+							<span className="text-sm font-medium dark:text-gray-200">
+								Popularidad
+							</span>
+							<span className="text-sm font-medium dark:text-gray-200">
+								{album.popularity}%
+							</span>
 						</div>
 						<Progress value={album.popularity} className="h-2" />
 					</div>
 
 					<div className="grid grid-cols-2 gap-4">
 						<div className="flex items-center">
-							<Calendar className="mr-2 h-4 w-4 text-green-500 flex-shrink-0" />
-							<span className="text-sm">{formatDate(album.release_date)}</span>
+							<Calendar className="mr-2 h-4 w-4 text-green-500 dark:text-green-400 flex-shrink-0" />
+							<span className="text-sm dark:text-gray-200">
+								{formatDate(album.release_date)}
+							</span>
 						</div>
 						<div className="flex items-center">
-							<Disc className="mr-2 h-4 w-4 text-purple-500 flex-shrink-0" />
-							<span className="text-sm">{album.total_tracks} pistas</span>
+							<Disc className="mr-2 h-4 w-4 text-purple-500 dark:text-purple-400 flex-shrink-0" />
+							<span className="text-sm dark:text-gray-200">
+								{album.total_tracks} pistas
+							</span>
 						</div>
 						<div className="flex items-center">
-							<Clock className="mr-2 h-4 w-4 text-blue-500 flex-shrink-0" />
-							<span className="text-sm">{formatDuration(totalDuration)}</span>
+							<Clock className="mr-2 h-4 w-4 text-blue-500 dark:text-blue-400 flex-shrink-0" />
+							<span className="text-sm dark:text-gray-200">
+								{formatDuration(totalDuration)}
+							</span>
 						</div>
 						<div className="flex items-center">
-							<Tag className="mr-2 h-4 w-4 text-yellow-500 flex-shrink-0" />
-							<span className="text-sm truncate">{album.label}</span>
+							<Tag className="mr-2 h-4 w-4 text-yellow-500 dark:text-yellow-400 flex-shrink-0" />
+							<span className="text-sm truncate dark:text-gray-200">
+								{album.label}
+							</span>
 						</div>
 					</div>
 
 					<div>
-						<h4 className="font-semibold mb-2 flex items-center">
-							<Music className="mr-2 h-4 w-4 text-red-500" />
+						<h4 className="font-semibold mb-2 flex items-center dark:text-gray-200">
+							<Music className="mr-2 h-4 w-4 text-red-500 dark:text-red-400" />
 							Pistas
 						</h4>
 						<ul className="space-y-1">
 							{album.tracks.items.slice(0, 3).map((track, index) => (
-								<li key={track.id} className="text-sm">
+								<li key={track.id} className="text-sm dark:text-gray-300">
 									{index + 1}. {track.name} -{" "}
 									{formatDuration(track.duration_ms)}
 								</li>
@@ -119,7 +134,7 @@ export function AlbumCard({ album, loading }: AlbumCardProps) {
 							href={album.external_urls.spotify}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors duration-200"
+							className="inline-flex items-center px-4 py-2 bg-green-500 dark:bg-green-600 text-white rounded-full hover:bg-green-600 dark:hover:bg-green-700 transition-colors duration-200"
 						>
 							<ExternalLink className="mr-2 h-4 w-4" />
 							Ver en Spotify

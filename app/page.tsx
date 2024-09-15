@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Disc, Music, User } from "lucide-react";
+import { getArtistDetails, getAlbum, getTrack } from "@/services/spotify";
+import { Artist, Album, Track } from "@/models/Spotify";
 import CardsArtistas from "@/components/cards-artistas";
 import CardsCanciones from "@/components/cards-canciones";
 import CardsAlbumes from "@/components/cards-albumes";
-import { getArtistDetails, getAlbum, getTrack } from "@/services/spotify";
-import { Artist, Album, Track } from "@/models/Spotify";
+import ModeToggle from "@/components/ModeToggle";
 
 export default function Home() {
 	const [artist1, setArtist1] = useState<Artist>();
@@ -72,7 +73,10 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div className="min-h-screen bg-gradient-to-b from-green-400 to-blue-500 p-4 md:p-8">
+		<div className="min-h-screen bg-gradient-to-b from-green-400 to-blue-500 dark:from-green-900 dark:to-blue-900 p-4 md:p-8 transition-colors duration-300">
+			<div className="absolute top-4 right-4 z-50">
+				<ModeToggle />
+			</div>
 			<header className="mb-8 text-center mt-5">
 				<h1 className="text-5xl font-bold text-white mb-2">Versus Spotify</h1>
 				<p className="text-xl text-white">
@@ -80,26 +84,26 @@ export default function Home() {
 				</p>
 			</header>
 
-			<div className="max-w-4xl mx-auto bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-2xl p-6">
+			<div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-md rounded-lg shadow-2xl p-6 transition-colors duration-300">
 				<Tabs defaultValue="artists" className="mb-6">
-					<TabsList className="grid w-full grid-cols-3 gap-2 p-1 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg">
+					<TabsList className="grid w-full grid-cols-3 gap-2 p-1 bg-gradient-to-r from-green-400 to-blue-500 dark:from-green-600 dark:to-blue-600 rounded-lg">
 						<TabsTrigger
 							value="artists"
-							className="rounded-md font-semibold text-gray-100 transition-all data-[state=active]:bg-white data-[state=active]:text-green-600 data-[state=active]:shadow-lg hover:bg-green-100 hover:text-green-700"
+							className="rounded-md font-semibold text-gray-100 transition-all data-[state=active]:bg-white data-[state=active]:text-green-600 dark:data-[state=active]:bg-gray-800 dark:data-[state=active]:text-green-400 data-[state=active]:shadow-lg hover:bg-green-100 hover:text-green-700 dark:hover:bg-green-700 dark:hover:text-green-100"
 						>
 							<User className="mr-2 h-4 w-4" />
 							Artistas
 						</TabsTrigger>
 						<TabsTrigger
 							value="songs"
-							className="rounded-md font-semibold text-gray-100 transition-all data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-lg hover:bg-blue-100 hover:text-blue-700"
+							className="rounded-md font-semibold text-gray-100 transition-all data-[state=active]:bg-white data-[state=active]:text-blue-600 dark:data-[state=active]:bg-gray-800 dark:data-[state=active]:text-blue-400 data-[state=active]:shadow-lg hover:bg-blue-100 hover:text-blue-700 dark:hover:bg-blue-700 dark:hover:text-blue-100"
 						>
 							<Music className="mr-2 h-4 w-4" />
 							Temas
 						</TabsTrigger>
 						<TabsTrigger
 							value="albums"
-							className="rounded-md font-semibold text-gray-100 transition-all data-[state=active]:bg-white data-[state=active]:text-teal-600 data-[state=active]:shadow-lg hover:bg-teal-100 hover:text-teal-700"
+							className="rounded-md font-semibold text-gray-100 transition-all data-[state=active]:bg-white data-[state=active]:text-teal-600 dark:data-[state=active]:bg-gray-800 dark:data-[state=active]:text-teal-400 data-[state=active]:shadow-lg hover:bg-teal-100 hover:text-teal-700 dark:hover:bg-teal-700 dark:hover:text-teal-100"
 						>
 							<Disc className="mr-2 h-4 w-4" />
 							Álbumes

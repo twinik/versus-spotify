@@ -54,7 +54,7 @@ export default function Searcher({
 						placeholder={"Buscar " + placeholder}
 						value={searchTerm1}
 						onChange={(e) => setSearchTerm1(e.target.value)}
-						className="bg-white bg-opacity-50 backdrop-blur-sm text-black"
+						className="bg-white dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-50 backdrop-blur-sm text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-300"
 					/>
 				</div>
 				<div>
@@ -63,14 +63,14 @@ export default function Searcher({
 						placeholder={"Buscar " + placeholder + " para comparar"}
 						value={searchTerm2}
 						onChange={(e) => setSearchTerm2(e.target.value)}
-						className="bg-white bg-opacity-50 backdrop-blur-sm text-black"
+						className="bg-white dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-50 backdrop-blur-sm text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-300"
 					/>
 				</div>
 			</div>
 
 			<Button
 				onClick={handleCompare}
-				className="w-full font-bold mb-8 bg-gradient-to-r from-green-400 to-blue-500 transition-all duration-300 hover:from-green-500 hover:to-blue-600 hover:shadow-lg hover:scale-95"
+				className="w-full font-bold mb-8 bg-gradient-to-r from-green-400 to-blue-500 dark:from-green-600 dark:to-blue-600 text-white transition-all duration-300 hover:from-green-500 hover:to-blue-600 dark:hover:from-green-700 dark:hover:to-blue-700 hover:shadow-lg hover:scale-95"
 			>
 				Comparar
 			</Button>
