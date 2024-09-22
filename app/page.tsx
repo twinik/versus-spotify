@@ -149,7 +149,11 @@ export default function Home() {
 						{["artists", "songs", "albums"].map((tab, index) => (
 							<TabsTrigger
 								key={tab}
-								ref={(el) => (tabsRef.current[index] = el)}
+								ref={(el) => {
+									if (el) {
+										tabsRef.current[index] = el;
+									}
+								}}
 								value={tab}
 								className="relative rounded-md font-semibold text-gray-100 transition-all data-[state=active]:bg-white data-[state=active]:text-green-600 dark:data-[state=active]:bg-gray-800 dark:data-[state=active]:text-green-400 data-[state=active]:shadow-lg hover:bg-green-100 hover:text-green-700 dark:hover:bg-green-700 dark:hover:text-green-100 z-20"
 							>
